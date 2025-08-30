@@ -201,3 +201,27 @@ grid-template-columns: repeat(3, 1fr);
   `grid-column`, `grid-row`, `grid-template-areas`
 - Make it responsive:  
   Use `fr`, `minmax`, and `auto-fit` / `auto-fill`.
+
+---
+
+## ⚛️ Difference between useMemo and useCallback in React
+
+| Hook        | Purpose                                                                 | Returns         | Use Case Example                |
+|-------------|------------------------------------------------------------------------|-----------------|---------------------------------|
+| `useMemo`   | Memoizes the **result** of a function (value)                          | Value           | Expensive calculations          |
+| `useCallback`| Memoizes the **function itself** (function reference)                  | Function        | Passing stable callbacks to children |
+
+**Example:**
+
+```js
+// useMemo: caches a computed value
+const expensiveValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+// useCallback: caches a function reference
+const handleClick = useCallback(() => {
+  doSomething();
+}, [dependency]);
+```
+
+- Use `useMemo` when you want to avoid recalculating a value unless its dependencies change.
+- Use `useCallback` when you want to avoid recreating a function unless its dependencies change (useful for passing callbacks to child components).
