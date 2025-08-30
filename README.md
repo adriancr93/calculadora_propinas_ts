@@ -1,72 +1,71 @@
-# 📚 Tailwind CSS & CSS Grid — Guía práctica
+# 📚 Tailwind CSS & CSS Grid — Practical Guide
 
-## 🎨 ¿Qué es Tailwind CSS?
-**Tailwind CSS** es un framework CSS basado en utilidades.  
+## 🎨 What is Tailwind CSS?
+**Tailwind CSS** is a utility-first CSS framework.
 
-A diferencia de **Bootstrap**, donde una sola clase puede contener varias propiedades CSS, en Tailwind CSS **cada clase corresponde a una propiedad específica** con un nombre descriptivo.
+Unlike **Bootstrap**, where a single class can contain multiple CSS properties, in Tailwind CSS **each class corresponds to a specific property** with a descriptive name.
 
-### ✅ Ventajas de Tailwind CSS
-- Escribes el CSS directamente en tus componentes (no necesitas hojas externas).
-- No te preocupas por la herencia de CSS.
-- El naming de clases deja de ser un problema.
-- Extensión de **VSCode** con autocompletado excelente.
-- Ideal para maquetar rápido con clases utilitarias.
-
----
-
-## 🧩 ¿Qué es CSS Grid?
-**CSS Grid** es un sistema de diseño **bidimensional** que permite crear layouts en filas y columnas con mucha precisión y flexibilidad.
-
-📌 **Diferencia con Flexbox:**  
-- Flexbox → diseño **unidimensional** (fila **o** columna).  
-- Grid → diseño **bidimensional** (fila **y** columna).
-
-💡 **Ejemplo mental:**  
-Piensa en una hoja cuadriculada: cada celda es un espacio donde puedes colocar un elemento, definir cuántas filas y columnas habrá y cómo se acomodan los elementos.
+### ✅ Advantages of Tailwind CSS
+- Write CSS directly in your components (no need for external stylesheets).
+- No worries about CSS inheritance.
+- No more class naming headaches.
+- Excellent VSCode extension with autocomplete.
+- Ideal for rapid prototyping with utility classes.
 
 ---
 
-## 🧱 Conceptos clave en CSS Grid
+## 🧩 What is CSS Grid?
+**CSS Grid** is a **two-dimensional** layout system that lets you create layouts in rows and columns with precision and flexibility.
 
-| Concepto         | Explicación simple |
-|------------------|-------------------|
-| **Grid container** | Elemento padre con `display: grid`. |
-| **Grid items**    | Hijos directos del container. |
-| **Grid lines**    | Líneas que dividen filas y columnas (numeradas desde 1). |
-| **Grid tracks**   | Filas y columnas completas. |
-| **Grid cell**     | Una sola celda de la cuadrícula. |
-| **Grid area**     | Un bloque de celdas que un elemento puede ocupar. |
+📌 **Difference from Flexbox:**  
+- Flexbox → **one-dimensional** layout (row **or** column).  
+- Grid → **two-dimensional** layout (row **and** column).
+
+💡 **Mental example:**  
+Think of a grid notebook: each cell is a space where you can place an element, define how many rows and columns there will be, and how elements are arranged.
 
 ---
 
-## 🛠 Crear un grid básico
+## 🧱 Key Concepts in CSS Grid
+
+| Concept           | Simple Explanation                          |
+|-------------------|---------------------------------------------|
+| **Grid container**| Parent element with `display: grid`.        |
+| **Grid items**    | Direct children of the container.           |
+| **Grid lines**    | Lines dividing rows and columns (numbered). |
+| **Grid tracks**   | Complete rows and columns.                  |
+| **Grid cell**     | A single cell in the grid.                  |
+| **Grid area**     | A block of cells an element can occupy.     |
+
+---
+
+## 🛠 Create a basic grid
+
 ```css
 .container {
-  display: grid; /* Activar grid */
-  grid-template-columns: 100px 200px auto; /* 3 columnas */
-  grid-template-rows: 100px auto; /* 2 filas */
-  gap: 10px; /* Espacio entre celdas */
+  display: grid; /* Enable grid */
+  grid-template-columns: 100px 200px auto; /* 3 columns */
+  grid-template-rows: 100px auto; /* 2 rows */
+  gap: 10px; /* Space between cells */
 }
+```
 
+📌 **Explanation:**
 
-📌 Explicación:
+- `grid-template-columns` → width of each column.
+- `grid-template-rows` → height of each row.
+- `auto` → size adapts to content.
+- `gap` → space between columns and rows.
 
-grid-template-columns → ancho de cada columna.
+**HTML + CSS Example:**
 
-grid-template-rows → alto de cada fila.
-
-auto → tamaño se adapta al contenido.
-
-gap → espacio entre columnas y filas.
-
-Ejemplo HTML + CSS
-
+```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grid básico</title>
+<title>Basic Grid</title>
 <style>
   .container {
     display: grid;
@@ -97,35 +96,40 @@ Ejemplo HTML + CSS
   </div>
 </body>
 </html>
+```
 
+---
 
-📏 Unidades útiles en CSS Grid
-px → tamaño fijo.
+## 📏 Useful units in CSS Grid
 
-% → relativo al contenedor.
+- `px` → fixed size.
+- `%` → relative to container.
+- `fr` → fraction of available space (very common).
+- `auto` → adjusts to content.
+- `minmax(min, max)` → defines a range.
+- `repeat(n, value)` → avoids repeating code.
 
-fr → fracción del espacio disponible (muy usado).
+**Example:**
 
-auto → ajusta al contenido.
-
-minmax(min, max) → define un rango.
-
-repeat(n, valor) → evita repetir código.
-
-Ejemplo:
-
+```css
 grid-template-columns: repeat(3, 1fr);
-/* Crea 3 columnas iguales sin escribir 1fr 1fr 1fr */
+/* Creates 3 equal columns without writing 1fr 1fr 1fr */
+```
 
-🎯 Colocar elementos en el grid
+---
 
+## 🎯 Placing elements in the grid
+
+```css
 .item1 {
-  grid-column: 1 / 3; /* De la línea 1 a la 3 (2 columnas) */
-  grid-row: 1 / 2;    /* Solo la primera fila */
+  grid-column: 1 / 3; /* From line 1 to 3 (2 columns) */
+  grid-row: 1 / 2;    /* Only the first row */
 }
+```
 
-📌 También puedes usar nombres:
+📌 You can also use names:
 
+```css
 .container {
   grid-template-areas:
     "header header"
@@ -134,15 +138,17 @@ grid-template-columns: repeat(3, 1fr);
 .header { grid-area: header; }
 .sidebar { grid-area: sidebar; }
 .main { grid-area: main; }
+```
 
-Ejemplo HTML + CSS
+**HTML + CSS Example:**
 
+```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grid con áreas</title>
+<title>Grid with Areas</title>
 <style>
   .container {
     display: grid;
@@ -159,36 +165,39 @@ Ejemplo HTML + CSS
 </head>
 <body>
   <div class="container">
-    <div class="header">Encabezado</div>
-    <div class="sidebar">Barra lateral</div>
-    <div class="main">Contenido principal</div>
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="main">Main Content</div>
   </div>
 </body>
 </html>
+```
 
-📱 Grid responsive
+---
 
+## 📱 Responsive Grid
+
+```css
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+```
 
-📌 Esto crea columnas que se ajustan automáticamente para que cada una tenga mínimo 200px y se reparta el espacio restante.
+📌 This creates columns that automatically adjust so each is at least 200px and shares the remaining space.
 
-🧠 Resumen rápido
+---
 
-Activa Grid:
-display: grid;
+## 🧠 Quick summary
 
-Define columnas y filas:
-grid-template-columns;
-grid-template-rows;
-
-Ajusta espacio:
-gap;
-
-Coloca elementos:
-grid-column, grid-row, grid-template-areas.
-
-Hazlo responsive:
-Usa fr, minmax y auto-fit / auto-fill.
+- Enable Grid:  
+  `display: grid;`
+- Define columns and rows:  
+  `grid-template-columns;`  
+  `grid-template-rows;`
+- Adjust spacing:  
+  `gap;`
+- Place elements:  
+  `grid-column`, `grid-row`, `grid-template-areas`
+- Make it responsive:  
+  Use `fr`, `minmax`, and `auto-fit` / `auto-fill`.
